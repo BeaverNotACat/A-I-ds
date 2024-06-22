@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "web"
+version = "0.1.0"
+description = ""
+authors = ["BeaverNotACat <beavernotacat@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+litestar = "^2.9.0"
+sqlalchemy = "^2.0.31"
+asyncpg = "^0.29.0"
+pydantic = "^2.7.4"
+pydantic-settings = "^2.3.3"
+alembic = "^1.13.1"
+psycopg2-binary = "^2.9.9"
+redis = "^5.0.6"
+uvicorn = "^0.30.1"
+tensorflow = "^2.16.1"
+jinja2 = "^3.1.4"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+ruff = "^0.4.10"
+mypy = "^1.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.mypy.overrides]]
+module = "tensorflow"
+ignore_errors = true
