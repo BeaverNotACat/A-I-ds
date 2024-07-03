@@ -1,0 +1,36 @@
+version: 2.26.1
+name: A-I-DS
+
+services:
+  web:
+    container_name: web
+    restart: always
+    build: .
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=aids
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - REDIS_HOST=redis
+      - REDIS_USER=admin
+      - REDIS_PASSWORD=admin
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - 8001:8000
+
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=aids
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  redis:
+    container_name: redis
+    restart: always
+    image: redis:latest
+    environment:
+      - REDIS_PASSWORD=admin
