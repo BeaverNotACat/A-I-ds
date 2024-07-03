@@ -2,8 +2,7 @@ deps:
 	python -m pip install poetry
 	poetry install --only main
 
-dev-deps:
-	deps
+dev-deps: deps
 	poetry install
 
 lint:
