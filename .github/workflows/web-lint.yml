@@ -22,12 +22,13 @@ jobs:
         python-version: "3.11"
         
     - name: ⬇️ Install dependencies
+      working-directory: ./web
       run: |
-        cd web
         python -m pip install poetry
         poetry install --only dev
 
     - name: 🚨 Lint
+      working-directory: ./web
       run: |
-        poetry run ruff check web/app
-        poetry run mypy web/app/
+        poetry run ruff check app
+        poetry run mypy app
