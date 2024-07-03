@@ -16,7 +16,7 @@ app = Litestar(
         "model": Provide(model_dependencie)
     },
     template_config=TemplateConfig(
-        directory=Path("templates"),
+        directory=Path("app/templates"),
         engine=JinjaTemplateEngine,
     ),
     route_handlers=[example_router]
