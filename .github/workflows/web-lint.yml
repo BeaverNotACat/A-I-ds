@@ -24,6 +24,8 @@ jobs:
     - name: ⬇️ Install dependencies
       working-directory: ./web
       run: |
+        pwd
+        ls
         make dev-deps
 
     - name: 🚨 Lint
