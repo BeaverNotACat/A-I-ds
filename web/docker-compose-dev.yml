@@ -34,3 +34,11 @@ services:
     image: redis:latest
     environment:
       - REDIS_PASSWORD=admin
+  
+  minio:
+    container_name: minio
+    image: minio/minio
+    command: server --console-address ":9001" /data/minio/
+    ports:
+      - 9000:9000
+      - 9001:9001
