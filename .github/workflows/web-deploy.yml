@@ -1,0 +1,33 @@
+name: Web application deploy
+
+on:
+  workflow_run:
+    workflows: ["Web application lint"]
+    types: [requested]
+
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+      
+      - name: 🚀 Deploy
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.IP}}
+          username: ${{secrets.USR}}
+          password: ${{secrets.PASS}}
+          port: 22
+          script: |
+            cd /home/matv864/A-I-ds
+            git pull
+            docker stop
+            docker rm web
+            docker compose up --build -d
+            
