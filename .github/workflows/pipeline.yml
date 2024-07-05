@@ -46,6 +46,6 @@ jobs:
           script: |
             cd /home/matv864/A-I-ds
             git pull
-            docker stop
-            docker rm backend
-            docker compose up --build -d
+            sudo docker stop
+            sudo docker rm backend
+            sudo docker compose up --build -d
