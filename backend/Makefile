@@ -15,3 +15,5 @@ migrate:
 run:
 	poetry run litestar run
 
+run-dev:
+	poetry run litestar run -d
