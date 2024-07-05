@@ -1,5 +1,4 @@
 from litestar import Router, get
-from litestar.response import Template
 
 from tensorflow import Module  # type: ignore[import-untyped]
 
