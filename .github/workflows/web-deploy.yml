@@ -20,14 +20,13 @@ jobs:
       - name: 🚀 Deploy
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{secrets.IP}}
-          username: ${{secrets.USR}}
-          password: ${{secrets.PASS}}
-          port: 22
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
           script: |
             cd /home/matv864/A-I-ds
             git pull
             docker stop
             docker rm web
             docker compose up --build -d
-            
