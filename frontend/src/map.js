@@ -18,17 +18,25 @@ import getGeojson from './createGeojson';
 useGeographic();
 
 
-const stroke = new Stroke({
-  color: 'rgba(0, 0, 0, 0.6)',
-  width: 3,
-});
-
-
 const styleFunction = function(feature) {
   return new Style({
-    stroke: stroke,
+    // fill: new Fill({
+    //   color: colors[feature.getProperties().name % colors.length]
+    // }),
     text: new Text({
-      text: feature.get('name')
+      text: feature.getProperties().name.toString(),
+      scale: 2.5,
+      overflow: true,
+      stroke: new Stroke({
+        width: 0.5,
+        color: "#fff"
+      }),
+      fill: new Fill({
+        color: "#000"
+      })
+    }),
+    stroke: new Stroke({
+      width: 5
     })
   })
 };
