@@ -12,7 +12,7 @@ from app.models.plan import ParticleSwarmOptimization
 async def assess_model_setup(app: Litestar) -> AsyncGenerator[None, None]:
     model = getattr(app.state, "assess_model", None)
     if model is None:
-        model = CatBoostRegressor().load_model("../assess_model_weigts")
+        model = CatBoostRegressor().load_model("../assess_weights.cbm")
         app.state.model = model
     try:
         yield
@@ -24,7 +24,7 @@ async def assess_model_setup(app: Litestar) -> AsyncGenerator[None, None]:
 async def plan_model_setup(app: Litestar) -> AsyncGenerator[None, None]:
     model = getattr(app.state, "plan_model", None)
     if model is None:
-        model = ParticleSwarmOptimization(getattr(app.state, "assess_model"))
+        model = ParticleSwarmOptimization(CatBoostRegressor().load_model("../assess_weights.cbm"))
         app.state.model = model
     try:
         yield
