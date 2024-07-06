@@ -1,12 +1,15 @@
 {
-    "name": "frontend",
-    "dependencies": {
-      "ol": "9.2.4"
-    },
-    "devDependencies": {
-      "vite": "^3.2.3"
-    },
-    "scripts": {
-      "start": "vite --port 8173"
-    }
+  "name": "node-starter",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite src --port 8080",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4"
+  },
+  "dependencies": {
+    "ol": "^9.2.4"
   }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ad helper</title>
+    <script src="https://unpkg.com/cookielib/src/cookie.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        width: 100%;
+      }
+      .nested_item {
+        width: 30vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .center_button {
+        width: 13vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+    <script type="module" src="main.js"></script>
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <div class="navbar bg-base-100">
+      <a class="btn btn-ghost text-xl" href="/">Ad helper</a>
+    </div>
+
+
+    <!-- HERO ITEM -->
+    <div class="hero bg-base-200 min-h-screen">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold"> Вас приветствует</h1>
+          <p class="py-6">вы можете либо открыть карту сразу или проставить пониже необходимые параметры</p>
+          <a href="map.html"><button class="btn btn-primary">перейти к карте</button></a>
+        </div>
+      </div>
+    </div>
+    
+    <br/>
+    <br/>
+
+    <!-- DEFAULT_COOKIE -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // all, male, female
+        setCookie("gender", "all");
+
+        // int [0, 80]
+        setCookie("age_from", "0");
+        setCookie("age_to", "80");
+
+        // string ^[a-c]*
+        setCookie("income", "");
+
+        // int [50, 500];
+        setCookie("avaliable_banners", "100");
+      });
+       
+    </script>
+
+
+    <!-- DIVIDER 1 -->
+    <div class="flex w-full flex-col lg:flex-row">
+
+      <!-- GENDER -->
+      <div class="card bg-base-300 rounded-box grid h-50 flex-grow place-items-center">
+        <h1 class="text-2xl font-bold">пол целевой аудитории</h1>
+          <div class="nested_item">
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text">Неважно</span>
+                <input oninput="setCookie('gender', 'all');" type="radio" name="radio-10" class="radio checked:bg-red-500" checked="checked" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text">Женский пол</span>
+                <input oninput="setCookie('gender', 'female');" type="radio" name="radio-10" class="radio checked:bg-blue-500"/>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text">Мужской пол</span>
+                <input oninput="setCookie('gender', 'male');" type="radio" name="radio-10" class="radio checked:bg-green-500"/>
+              </label>
+            </div>
+          </div>
+      </div>
+
+      <div class="divider divider-horizontal"></div>
+
+      <!-- AGE -->
+      <div class="card bg-base-300 rounded-box grid h-50 flex-grow place-items-center">
+        <h1 class="text-2xl font-bold">возраст целевой аудитории</h1>
+
+        <div class="nested_item">
+          <h1 class="text-1xl">минимальный</h1>
+          <input oninput="setCookie('age_from', this.value);" type="range" min="0" max="80" value="0" class="range" step="10" />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>0</span>
+            <span>10</span>
+            <span>20</span>
+            <span>30</span>
+            <span>40</span>
+            <span>50</span>
+            <span>60</span>
+            <span>70</span>
+            <span>80</span>
+          </div>
+
+          <h1 class="text-1xl">максимальный</h1>
+          <input oninput="setCookie('age_to', this.value);" type="range" min="0" max="80" value="80" class="range" step="10" />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>0</span>
+            <span>10</span>
+            <span>20</span>
+            <span>30</span>
+            <span>40</span>
+            <span>50</span>
+            <span>60</span>
+            <span>70</span>
+            <span>80</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider divider-horizontal"></div>
+
+    </div>
+
+    <br/>
+    <br/>
+
+
+    <!-- DIVIDER 2 -->
+    <div class="flex w-full flex-col lg:flex-row">
+
+      <!-- SCRIPT_INCOME_HELPER -->
+      <script>
+        var a = false, b = false, c = false;
+        function countIncome() {
+          let income = '';
+          if (a) {
+            income += 'a'
+          }
+          if (b) {
+            income += 'b'
+          }
+          if (c) {
+            income += 'c'
+          }
+
+          setCookie("income", income)
+        }
+      </script>
+
+      <!-- INCOME -->
+      <div class="card bg-base-300 rounded-box grid h-50 flex-grow place-items-center">
+        <h1 class="text-2xl font-bold">доход целевой аудитории</h1>
+          <div class="nested_item">
+           
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text">доход - A</span>
+                <input onclick="a = this.checked ; countIncome();" type="checkbox" class="checkbox checkbox-primary" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text">доход - B</span>
+                <input onclick="b = this.checked ; countIncome();" type="checkbox" class="checkbox checkbox-primary" />
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <span class="label-text">доход - C</span>
+                <input onclick="c = this.checked ; countIncome();" type="checkbox" class="checkbox checkbox-primary" />
+              </label>
+            </div>
+           
+          </div>
+      </div>
+
+      <div class="divider divider-horizontal"></div>
+
+      <!-- AVALIABLE_BANNERS -->
+      <div class="card bg-base-300 rounded-box grid h-50 flex-grow place-items-center">
+        <h1 class="text-2xl font-bold">количество доступных баннеров</h1>
+
+        <div class="nested_item">
+          <input oninput="setCookie('avaliable_banners', this.value);" type="range" min="50" max="500" value="100" class="range" step="10" />
+          <div class="flex w-full justify-between px-2 text-xs">
+            <span>50</span>
+            <span>100</span>
+            <span>150</span>
+            <span>200</span>
+            <span>250</span>
+            <span>300</span>
+            <span>350</span>
+            <span>400</span>
+            <span>450</span>
+            <span>500</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="divider divider-horizontal"></div>
+
+        
+
+    </div>
+
+
+    <br/>
+    <br/>
+      
+
+    
+    <!-- MAP_BUTTON -->
+    <div class="center_button">
+      <a href="map.html"><button class="btn btn-primary">перейти к карте</button></a>
+    </div>
+
+
+    <br/>
+    <br/>
+
+  </body>
+</html>
+
+
+
+
+<!-- <a href="map.html">карта</a> -->

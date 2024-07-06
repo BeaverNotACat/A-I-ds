@@ -65,4 +65,4 @@ const map = new Map({
   }),
 });
 
-alert(getCookie("key"));
+// alert(getCookie("key"));
