@@ -72,5 +72,3 @@ const map = new Map({
     showFullExtent: true,
   }),
 });
-
-// alert(getCookie("key"));
