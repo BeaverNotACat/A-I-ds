@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from functools import cache
 
 from catboost import CatBoostRegressor # type: ignore[import-untyped]
 import numpy as np
