@@ -19,10 +19,10 @@ async def assess_campaign(uow: UnitOfWork, assess_model: CatBoostRegressor, data
     path="/plan",
 )
 async def plan_campaign(
-    uow: UnitOfWork, model: IParticleSwarmOptimization, data: CampaignParameters
+    uow: UnitOfWork, plan_model: IParticleSwarmOptimization, data: CampaignParameters
 ) -> CampaignRegions:
     async with uow:
-        return CampaignService.plan_campaign(uow, model, data)
+        return CampaignService.plan_campaign(uow, plan_model, data)
 
 
 router = Router(
