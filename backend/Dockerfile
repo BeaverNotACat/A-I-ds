@@ -8,5 +8,4 @@ COPY pyproject.toml .
 RUN make deps
 
 COPY . .
-CMD make migrate
 CMD make run

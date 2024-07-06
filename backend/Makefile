@@ -13,7 +13,7 @@ migrate:
 	poetry run alembic upgrade head
 
 run:
-	poetry run litestar run
+	poetry run litestar run -H 0.0.0.0
 
 run-dev:
-	poetry run litestar run -d
+	poetry run litestar run -d -H 0.0.0.0

@@ -9,7 +9,6 @@ services:
     ports:
       - 8080:8080
 
-
   backend:
     container_name: backend
     restart: always
@@ -22,32 +21,5 @@ services:
       - REDIS_HOST=redis
       - REDIS_USER=admin
       - REDIS_PASSWORD=admin
-    depends_on:
-      - postgres
-      - redis
-      - minio
     ports:
       - 8000:8000
-
-  postgres:
-    container_name: postgres
-    restart: always
-    image: postgres:latest
-    environment:
-      - POSTGRES_DB=aids
-      - POSTGRES_HOST_AUTH_METHOD=trust
-
-  redis:
-    container_name: redis
-    restart: always
-    image: redis:latest
-    environment:
-      - REDIS_PASSWORD=admin
-  
-  minio:
-    container_name: minio
-    image: minio/minio
-    command: server --console-address ":9001" /data/minio/
-    ports:
-      - 9000:9000
-      - 9001:9001
