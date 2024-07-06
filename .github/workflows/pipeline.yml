@@ -31,6 +31,7 @@ jobs:
   
   deploy:
     name: deploy
+    needs: [lint-backend]
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
