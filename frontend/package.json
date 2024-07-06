@@ -1,5 +1,5 @@
 {
-    "name": "mapbox-vector-tiles-advanced",
+    "name": "frontend",
     "dependencies": {
       "ol": "9.2.4"
     },
@@ -7,7 +7,6 @@
       "vite": "^3.2.3"
     },
     "scripts": {
-      "start": "vite",
-      "build": "vite build"
+      "start": "vite --port 8173"
     }
   }

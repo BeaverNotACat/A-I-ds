@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Ad analytics</title>
+    <link rel="stylesheet" href="node_modules/ol/ol.css">
     <script src="https://unpkg.com/cookielib/src/cookie.min.js"></script>
     <style>
       html {
@@ -27,14 +28,10 @@
     </style>
   </head>
   <body>
-    
     <div class="wrapper">
-            <a href="map.html">карта</a>
+      <div id="map" class="map"></div>
     </div>
-    
-    
-    
     <script src="https://openlayers.org/en/v9.2.4/examples/resources/mapbox-streets-v6-style.js"></script>
-    <script type="module" src="index.js"></script>
+    <script type="module" src="map.js"></script>
   </body>
 </html>

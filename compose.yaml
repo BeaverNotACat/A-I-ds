@@ -2,6 +2,14 @@ version: 2.26.1
 name: aids
 
 services:
+  frontend:
+    container_name: frontend
+    restart: always
+    build: ./frontend
+    ports:
+      - 8173:8173
+
+
   backend:
     container_name: backend
     restart: always
