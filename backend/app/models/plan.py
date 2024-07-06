@@ -34,7 +34,6 @@ class ParticleSwarmOptimization:
         self.model = model
 
     
-    @cache
     def predict(self, max_banners: int):
         def objective_function(x):
             return -1 if sum(x) > max_banners else self.model.predict(x)
