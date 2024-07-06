@@ -1,6 +1,6 @@
 FROM python:3.12.3
 
-WORKDIR /event
+WORKDIR /workdir
 
 RUN apt-get install make
 COPY Makefile .
