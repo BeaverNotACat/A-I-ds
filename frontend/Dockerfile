@@ -4,4 +4,4 @@ WORKDIR /frontend
 
 COPY . .
 RUN npm i
-CMD npm run start
+CMD npm run dev
