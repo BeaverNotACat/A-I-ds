@@ -1,5 +1,5 @@
 from litestar import Router, post
-from catboost import CatBoostRegressor # type: ignore[import-untyped]
+from kan import KAN
 
 from app.services.campaign import CampaignService
 from app.schemas import CampaignParameters, CampaignRegions
@@ -10,7 +10,7 @@ from app.models.plan import IParticleSwarmOptimization
 @post(
     path="/assess",
 )
-async def assess_campaign(uow: UnitOfWork, assess_model: CatBoostRegressor, data: CampaignRegions) -> float:
+async def assess_campaign(uow: UnitOfWork, assess_model: KAN, data: list[int]) -> float:
     async with uow:
         return CampaignService.assess_campaign(uow, assess_model, data)
 

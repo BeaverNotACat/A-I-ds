@@ -1,7 +1,7 @@
 from litestar.datastructures import State
 
 from app.storage.unit_of_work import UnitOfWork
-from catboost import CatBoostRegressor # type: ignore[import-untyped]
+from kan import KAN
 
 
 async def unit_of_work_dependencie(state: State) -> UnitOfWork:
@@ -11,7 +11,7 @@ async def unit_of_work_dependencie(state: State) -> UnitOfWork:
     return unit_of_work
 
 
-async def assess_model_dependencie(state: State) -> CatBoostRegressor:
+async def assess_model_dependencie(state: State) -> KAN:
     model = getattr(state, "assess_model", None)
     if model is None:
         raise ValueError("Assess model is not in state")

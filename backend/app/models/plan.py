@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 
-from catboost import CatBoostRegressor # type: ignore[import-untyped]
 import numpy as np
+from kan import KAN
+import torch
 
 class IParticleSwarmOptimization(ABC):
-    model: CatBoostRegressor # Function for optimisation
+    model: KAN # Function for optimisation
     
     dimensions: int
     num_particles: int
@@ -16,12 +17,12 @@ class IParticleSwarmOptimization(ABC):
     c2: float  # Best diection of other points
 
     @abstractmethod
-    def predict(self):
+    def predict(self, max_banners: int):
         raise NotImplementedError
 
 
-class ParticleSwarmOptimization:
-    dimensions = 9
+class ParticleSwarmOptimization(IParticleSwarmOptimization):
+    dimensions = 20
     num_particles = 30
     max_iter = 100
 
@@ -29,16 +30,16 @@ class ParticleSwarmOptimization:
     c1 = 1.5
     c2 = 1.5
 
-    def __init__(self, model: CatBoostRegressor) -> None:
+    def __init__(self, model: KAN) -> None:
         self.model = model
 
     
     def predict(self, max_banners: int):
         def objective_function(x):
-            return -1 if sum(x) > max_banners else self.model.predict(x)
+            return -1 if sum(x) > max_banners else self.model(torch.tensor(np.concatenate([x, np.array([0])]).reshape(1, -1))).tolist()[0][0]
 
         # Инициализация частиц
-        particles = np.random.randint(0, max_banners, size=(self.num_particles, self.dimensions))
+        particles = np.random.randint(0, max_banners//self.dimensions+1, size=(self.num_particles, self.dimensions))
         velocities = np.random.randint(-1, 2, size=(self.num_particles, self.dimensions))
         personal_best_positions = particles.copy()
         personal_best_scores = np.apply_along_axis(objective_function, 1, particles)

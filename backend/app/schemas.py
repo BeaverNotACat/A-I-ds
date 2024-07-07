@@ -31,10 +31,11 @@ class CampaignParameters(BaseModel):
         return income
 
 
-class CampaignRegions(RootModel):  # TODO make more human-redable representation schema
+class CampaignRegions(BaseModel):  # TODO make more human-redable representation schema
     """
     Represents model output: vector of map sectors with required banners amount
     """
 
     model_config = ConfigDict(from_attributes=True)
-    root: list[int]
+    regions: list[int]
+    score: float

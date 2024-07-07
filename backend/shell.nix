@@ -1,11 +1,16 @@
-with import <nixpkgs> {};
-mkShell {
-  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
-    stdenv.cc.cc
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  nativeBuildInputs = [
+    pkgs.zlib
+    pkgs.stdenv
   ];
-  NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
+
   shellHook = ''
-    export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.lib.makeLibraryPath[
+    pkgs.zlib
+    pkgs.stdenv.cc.cc.lib
+    ]};
     fish
   '';
 }
