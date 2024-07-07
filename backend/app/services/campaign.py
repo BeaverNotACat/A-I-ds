@@ -1,6 +1,5 @@
-import random
 
-from kan import KAN, torch
+from kan import KAN
 import numpy as np
 from torch import tensor
 

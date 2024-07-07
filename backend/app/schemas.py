@@ -1,7 +1,7 @@
 import re
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, RootModel, field_validator, ValidationInfo
+from pydantic import BaseModel, ConfigDict, field_validator, ValidationInfo
 
 
 class Gender(StrEnum):
