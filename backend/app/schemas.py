@@ -10,7 +10,7 @@ class Gender(StrEnum):
     FEMALE = "female"
 
 
-class CampaignParameters(BaseModel):
+class CampaignParameters(BaseModel, frozen=True):
     """
     Represents model intput parameters
     """
@@ -31,7 +31,7 @@ class CampaignParameters(BaseModel):
         return income
 
 
-class CampaignRegions(BaseModel):  # TODO make more human-redable representation schema
+class CampaignRegions(BaseModel, frozen=True):  # TODO make more human-redable representation schema
     """
     Represents model output: vector of map sectors with required banners amount
     """

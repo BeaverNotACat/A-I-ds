@@ -1,4 +1,4 @@
-
+from functools import cache
 from kan import KAN
 import numpy as np
 from torch import tensor
@@ -9,6 +9,7 @@ from app.models.plan import IParticleSwarmOptimization
 
 
 class CampaignService:
+    @cache
     @staticmethod
     def plan_campaign(
         uow: UnitOfWork,
@@ -18,6 +19,7 @@ class CampaignService:
         a = plan_model.predict(parameters.avaliable_banners)
         return CampaignRegions(regions=a[0], score=a[1])
 
+    @cache
     @staticmethod
     def assess_campaign(
         uow: UnitOfWork, assess_model: KAN, regions: list[int]
